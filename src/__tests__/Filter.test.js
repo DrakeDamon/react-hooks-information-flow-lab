@@ -7,12 +7,13 @@ test("displays the <select> element", () => {
   expect(screen.queryByRole("combobox")).toBeInTheDocument();
 });
 
-test("calls the onCategoryChange callback prop when the <select> is changed", () => {
-  const onCategoryChange = jest.fn();
-  render(<Filter onCategoryChange={onCategoryChange} />);
+test("calls the handleCategoryChange callback prop when the <select> is changed", () => {
+  const handleCategoryChange = jest.fn();
+  render(<Filter handleCategoryChange={handleCategoryChange} />);
 
   fireEvent.change(screen.queryByRole("combobox"), {
     target: { value: "Dairy" },
   });
-  expect(onCategoryChange).toHaveBeenCalled();
+  expect(handleCategoryChange).toHaveBeenCalled();
+  expect(handleCategoryChange).toHaveBeenCalledWith("Dairy");
 });
